@@ -535,19 +535,19 @@ static int inquiry(struct scsi_cmnd *srb, struct rtsx_chip *chip)
 	}
 
 	if (sendbytes > 8) {
-		memcpy(buf, inquiry_buf, 8);
-		memcpy(buf + 8, inquiry_string, sendbytes - 8);
+		strncpy(buf, inquiry_buf, 8);
+		strncpy(buf + 8, inquiry_string, sendbytes - 8);
 		if (pro_formatter_flag) {
 			/* Additional Length */
 			buf[4] = 0x33;
 		}
 	} else {
-		memcpy(buf, inquiry_buf, sendbytes);
+		strncpy(buf, inquiry_buf, sendbytes);
 	}
 
 	if (pro_formatter_flag) {
 		if (sendbytes > 36)
-			memcpy(buf + 36, formatter_inquiry_str, sendbytes - 36);
+			strncpy(buf + 36, formatter_inquiry_str, sendbytes - 36);
 	}
 
 	scsi_set_resid(srb, 0);
