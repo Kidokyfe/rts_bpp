@@ -23,6 +23,7 @@
 #
 
 TARGET_MODULE := rts_bpp
+KERNELVER := $(shell uname -r)
 
 EXTRA_CFLAGS := -Idrivers/scsi 
 
