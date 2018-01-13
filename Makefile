@@ -34,12 +34,12 @@ $(TARGET_MODULE)-objs := rtsx.o rtsx_chip.o rtsx_transport.o rtsx_scsi.o rtsx_ca
 
 default:
 	cp -f ./define.release ./define.h
-	make -C /lib/modules/$(KERNELVER)/build/ SUBDIRS=$(PWD) modules
+	make -C /lib/modules/$(shell uname -r)/build/ SUBDIRS=$(PWD) modules
 debug:
 	cp -f ./define.debug ./define.h
-	make -C /lib/modules/$(KERNELVER)/build/ SUBDIRS=$(PWD) modules
+	make -C /lib/modules/$(shell uname -r)/build/ SUBDIRS=$(PWD) modules
 install:
-	cp $(TARGET_MODULE).ko /lib/modules/$(KERNELVER)/kernel/drivers/scsi -f
+	cp $(TARGET_MODULE).ko /lib/modules/$(shell uname -r)/kernel/drivers/scsi -f
 clean:
 	rm -f *.o *.ko
 	rm -f $(TARGET_MODULE).mod.c
